@@ -13,6 +13,8 @@ class nodejs(
   $npm_package_name            = $nodejs::params::npm_package_name,
   $npm_path                    = $nodejs::params::npm_path,
   $npmrc_auth                  = $nodejs::params::npmrc_auth,
+  $npmrc_user                  = $nodejs::params::npmrc_user,
+  $npmrc_group                 = $nodejs::params::npmrc_group,
   $repo_class                  = $nodejs::params::repo_class,
   $repo_enable_src             = $nodejs::params::repo_enable_src,
   $repo_ensure                 = $nodejs::params::repo_ensure,
@@ -47,6 +49,18 @@ class nodejs(
   if $npmrc_auth {
     if is_string($npmrc_auth) == false {
       fail('npmrc_auth must be a string')
+    }
+  }
+
+  if $npmrc_user {
+    if is_string($npmrc_user) == false {
+      fail('npmrc_user must be a string')
+    }
+  }
+
+  if $npmrc_group {
+    if is_string($npmrc_group) == false {
+      fail('npmrc_group must be a string')
     }
   }
 

@@ -4,3 +4,9 @@
 <% if @npmrc_auth -%>
 _auth="<%= @npmrc_auth %>"
 <% end -%>
+<% if @npmrc_user -%>
+user=<%= @npmrc_user %>
+<% end -%>
+<% if @npmrc_group -%>
+group=<%= @npmrc_group %>
+<% end -%>
