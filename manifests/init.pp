@@ -53,14 +53,14 @@ class nodejs(
   }
 
   if $npmrc_user {
-    if is_string($npmrc_user) == false {
-      fail('npmrc_user must be a string')
+    if (is_string($npmrc_user) == false) and (is_integer($npmrc_user) == false) {
+      fail('npmrc_user must be a string or integer')
     }
   }
 
   if $npmrc_group {
-    if is_string($npmrc_group) == false {
-      fail('npmrc_group must be a string')
+    if (is_string($npmrc_group) == false) and (is_integer($npmrc_group) == false) {
+      fail('npmrc_group must be a string or integer')
     }
   }
 
