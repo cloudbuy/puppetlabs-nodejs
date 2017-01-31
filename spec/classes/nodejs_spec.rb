@@ -54,6 +54,17 @@ describe 'nodejs', type: :class do
         end
       end
 
+      context 'with npm_user and npm_group set to a string' do
+        let :params do
+          {
+            npmrc_user: 'npm',
+            npmrc_group: 'build'
+          }
+        end
+
+        it { is_expected.to contain_file('root_npmrc').with_content(%r{^user=npm\ngroup=build$}) }
+      end
+
       # legacy_debian_symlinks
       context 'with legacy_debian_symlinks set to true' do
         let :params do
