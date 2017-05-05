@@ -1,5 +1,6 @@
 class nodejs::params {
   $npmrc_auth                  = undef
+  $npmrc_config                = undef
   $npmrc_user                  = undef
   $npmrc_group                 = undef
   $nodejs_debug_package_ensure = 'absent'
