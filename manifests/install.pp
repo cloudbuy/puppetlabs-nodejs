@@ -4,6 +4,7 @@ class nodejs::install {
   $npmrc_auth = $::nodejs::npmrc_auth
   $npmrc_user = $::nodejs::npmrc_user
   $npmrc_group = $::nodejs::npmrc_group
+  $npmrc_config = $::nodejs::npmrc_config
 
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")

@@ -10,3 +10,8 @@ user=<%= @npmrc_user %>
 <% if @npmrc_group -%>
 group=<%= @npmrc_group %>
 <% end -%>
+<%- if @npmrc_config -%>
+    <%- @npmrc_config.each do | k,v | -%>
+<%= k %>=<%= v %>
+    <%- end -%>
+<% end %>

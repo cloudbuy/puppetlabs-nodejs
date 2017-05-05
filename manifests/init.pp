@@ -13,6 +13,7 @@ class nodejs(
   $npm_package_name            = $nodejs::params::npm_package_name,
   $npm_path                    = $nodejs::params::npm_path,
   $npmrc_auth                  = $nodejs::params::npmrc_auth,
+  $npmrc_config                = $nodejs::params::npmrc_config,
   $npmrc_user                  = $nodejs::params::npmrc_user,
   $npmrc_group                 = $nodejs::params::npmrc_group,
   $repo_class                  = $nodejs::params::repo_class,
@@ -64,15 +65,21 @@ class nodejs(
     }
   }
 
+  if $npmrc_config {
+    if is_hash($npmrc_config) == false {
+      fail('npmrc_config must be a hash')
+    }
+  }
+
   validate_array($use_flags)
 
   include '::nodejs::install'
 
   if $manage_package_repo {
     include $repo_class
-    anchor { '::nodejs::begin': } ->
-    Class[$repo_class] ->
-    Class['::nodejs::install'] ->
-    anchor { '::nodejs::end': }
+    anchor { '::nodejs::begin': }
+    -> Class[$repo_class]
+    -> Class['::nodejs::install']
+    -> anchor { '::nodejs::end': }
   }
 }
